@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 24% 5.5%;
+    --foreground: 223 16% 91%;
+
+    --card: 222 21% 9.4%;
+    --card-foreground: 223 16% 91%;
+
+    --popover: 222 21% 9.4%;
+    --popover-foreground: 223 16% 91%;
+
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 224 22% 13.5%;
+    --secondary-foreground: 223 16% 91%;
+
+    --muted: 224 22% 13.5%;
+    --muted-foreground: 229 12% 54%;
+
+    --accent: 224 22% 13.5%;
+    --accent-foreground: 223 16% 91%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 225 19% 20%;
+    --input: 225 19% 20%;
+    --ring: 239 84% 67%;
+
+    --radius: 0.625rem;
+
+    /* Custom Urano tokens */
+    --surface: 222 21% 9.4%;
+    --surface-2: 224 22% 13.5%;
+    --surface-3: 223 20% 17.6%;
+    --border-light: 224 19% 26%;
+    --text-dim: 229 12% 54%;
+    --text-xdim: 226 13% 38%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    --accent-indigo: 239 84% 67%;
+    --accent-indigo-hover: 239 75% 61%;
+
+    --sidebar-background: 222 21% 9.4%;
+    --sidebar-foreground: 223 16% 91%;
+    --sidebar-primary: 239 84% 67%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 224 22% 13.5%;
+    --sidebar-accent-foreground: 223 16% 91%;
+    --sidebar-border: 225 19% 20%;
+    --sidebar-ring: 239 84% 67%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--border-light));
+  }
+}
+
+@layer components {
+  .urano-logo {
+    @apply font-bold text-xl;
+    background: linear-gradient(135deg, hsl(239 84% 67%), hsl(217 91% 60%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .message-bubble-user {
+    @apply rounded-2xl rounded-br-md px-4 py-2.5 max-w-[75%] ml-auto;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .message-bubble-agent {
+    @apply rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[75%];
+    background: hsl(224 22% 12%);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .message-bubble-system {
+    @apply rounded-xl px-4 py-2 mx-auto max-w-[85%] text-center text-sm;
+    background: transparent;
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--text-dim));
+  }
+
+  .message-bubble-pending {
+    @apply rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[75%];
+    background: hsla(38, 92%, 50%, 0.08);
+    border: 1px dashed hsl(var(--warning));
+  }
+
+  .message-bubble-rejected {
+    @apply rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[75%] opacity-60;
+    background: hsla(0, 84%, 60%, 0.06);
+    border: 1px dashed hsl(var(--destructive));
+  }
+
+  .lead-item-active {
+    @apply border-l-2;
+    border-left-color: hsl(var(--primary));
+    background: hsla(239, 84%, 67%, 0.12);
+  }
+
+  .pending-dot {
+    @apply w-2.5 h-2.5 rounded-full;
+    background: hsl(var(--warning));
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes typing-dot {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-4px); }
+  }
+
+  .typing-dot {
+    @apply w-2 h-2 rounded-full;
+    background: hsl(var(--text-dim));
+  }
+  .typing-dot:nth-child(1) { animation: typing-dot 1.4s ease-in-out infinite; }
+  .typing-dot:nth-child(2) { animation: typing-dot 1.4s ease-in-out 0.2s infinite; }
+  .typing-dot:nth-child(3) { animation: typing-dot 1.4s ease-in-out 0.4s infinite; }
+}
